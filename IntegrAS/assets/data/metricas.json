@@ -1,0 +1,39 @@
+[
+	{
+		"url": "assets/img/icons/networks/marcador_verde.png",
+		"antenna": "assets/img/icons/stations/antenna_green.png",
+		"hex": "#00e400",
+		"calidad": "Buena",
+		"riesgo": "Bajo"
+	},{
+		"url": "assets/img/icons/networks/marcador_amarillo.png",
+		"antenna": "assets/img/icons/stations/antenna_yellow.png",
+		"hex": "#ffff00",
+		"calidad": "Aceptable",
+		"riesgo": "Moderado"
+	},{
+		"url": "assets/img/icons/networks/marcador_naranja.png",
+		"antenna": "assets/img/icons/stations/antenna_orange.png",
+		"hex": "#ff7e00",
+		"calidad": "Mala",
+		"riesgo": "Alto"
+	},{
+		"url": "assets/img/icons/networks/marcador_rojo.png",
+		"antenna": "assets/img/icons/stations/antenna_red.png",
+		"hex": "#ff0000",
+		"calidad": "Muy Mala",
+		"riesgo": "Muy Alto"
+	},{
+		"url": "assets/img/icons/networks/marcador_morado.png",
+		"antenna": "assets/img/icons/stations/antenna_purple.png",
+		"hex": "#8f3f97",
+		"calidad": "Extremadamente Mala",
+		"riesgo": "Extremadamente Alto"
+	},{
+		"url": "assets/img/icons/networks/marcador_blanco.png",
+		"antenna": "assets/img/icons/stations/antenna_white.png",
+		"hex": "#ffffff",
+		"calidad": "-",
+		"riesgo": "-"
+	}
+]

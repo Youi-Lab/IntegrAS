@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="assets/css/dashboard-style.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="icon" href="assets/img/icons/logos/favicon.ico">
+    <title>
+        Monitoreo de la Calidad del Aire | You-i Lab
+    </title>
+</head>
+<body>
+
+    <div id="acotaciones">
+        <div class="item">
+            <div class="color"></div><div class="detalles">Dato Duro</div>
+        </div>
+        <div class="item">
+            <div class="color"></div><div class="detalles">Promedio Móvil</div>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <header>
+            <div id="app-logo"></div>
+        </header>
+        <main>
+            <div class="informacion-de-estacion">
+                <section id="nombre-de-estacion">
+                    <p>Estación:<br>
+                        <span></span>
+                    </p>
+                </section>
+                <section id="nombre-del-estado">
+                    <p>Estado:
+                        <span></span>
+                    </p>
+                </section>
+                <section id="indice-calidad">
+                    <p>Calidad del aire:
+                        <span></span>
+                    </p>
+                </section>
+                <section id="nivel-riesgo">
+                    <p>Nivel del riesgo:
+                        <span></span>
+                    </p>
+                </section>
+            </div>
+            <table>
+                <tr>
+                    <th class="black-font">Contaminante</th>
+                    <th class="black-font">Concentración</th>
+                </tr>
+                <tr>
+                    <td>PM10 (µg/m³)</td>
+                    <td id="prom1"></td>
+                </tr>
+                <tr>
+                    <td>PM2.5 (µg/m³)</td>
+                    <td id="prom2"></td>
+                </tr>
+                <tr>
+                    <td>SO2 (ppm)</td>
+                    <td id="prom3"></td>
+                </tr>
+                <tr>
+                    <td>CO (ppm)</td>
+                    <td id="prom4"></td>
+                </tr>
+                <tr>
+                    <td>O3 (ppm)</td>
+                    <td id="prom5"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td id="prom6"></td>
+                </tr>
+                <tr>
+                    <td>NO2 (ppm)</td>
+                    <td id="prom7"></td>
+                </tr>
+            </table>
+            <p id="table-date"></p>
+            <p class="informacion-de-estacion">(Para los contaminantes O3 y CO se presenta el promedio móvil de 8 horas, para las partículas PM10 y PM2.5 se presenta   el promedio móvil ponderado de 12 horas, para el SO2 se presenta el promedio de 24 horas. Ademas se presenta el dato horario de los contaminantes O3, O2 y NO2.)</p>
+        </main>
+        <footer>
+            <div class="instituciones">
+                <img class="footer-logo" src="assets/img/icons/logos/ipicyt_logo.png">
+                <img class="footer-logo" src="assets/img/icons/logos/youilab_logo.png">
+            </div>
+        </footer>
+    </div>
+    <div class="contenedor">
+        <div id="grafica-pm10"></div>
+        <div id="grafica-pm25"></div>
+        <div id="grafica-o3"></div>
+        <div id="grafica-no2"></div>
+        <div id="grafica-so2"></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.0/d3.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="assets/js/dashboard-related.js"></script>
+</body>
+</html>

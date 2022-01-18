@@ -1,0 +1,268 @@
+* {
+	box-sizing: border-box;
+	font-family: 'Lato', sans-serif;
+}
+
+html, body{
+	height: 100vh;
+	background-color: #F4F4F496
+}
+
+body>.sidebar {
+    width: 22vw;
+    background-color: #001B3D;
+    height: 100vh;
+    display: inline-block;
+    position: fixed;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    transition: all .4s ease;
+}
+
+body>.sidebar:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.75), 0 10px 10px rgba(0,0,0,0.82);
+}
+
+body>.contenedor {
+    height: 100vh;
+    width: 77vw;
+    display: inline-block;
+    float: right;
+}
+
+body>.contenedor>div {
+    padding: 30px 25px;
+}
+
+.contenedor > div > svg {
+    background-color: white;
+    border-radius: 0.7em;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.15), 0 10px 10px rgba(0,0,0,0.12);
+    height: 20em;
+    transition: all .5s ease;
+}
+
+.contenedor > div > svg:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.sidebar>main {
+    padding: 1em .5em;
+}
+
+.sidebar>footer {
+    position: absolute;
+    bottom: 0;
+    width: 23vw;
+}
+
+.sidebar>footer>.instituciones {
+    width: max-content;
+    margin: auto;
+}
+
+.footer-logo {
+    width: auto;
+    height: 60px;
+    margin: 7px 15px;
+    bottom: 0;
+    filter: brightness(0) invert(1);
+    display: inline-block;
+    margin: 10px 12px;
+}
+
+.black-font{
+	font-size: 1pc;
+	font-weight: bold;
+}
+
+.informacion-de-estacion {
+    color: white;
+    font-family: 'Robot', sans-serif;
+    font-size: .8em;
+}
+
+#nombre-de-estacion>p>span {
+    font-weight: bold;
+    font-size: 1.4em;
+}
+
+#nombre-del-estado {
+    margin-top: 10px;
+}
+
+#indice-calidad {
+    margin-top: 10px;
+    margin-bottom: 0.5em;
+}
+
+#nivel-riesgo {
+    margin-bottom: 3em;
+}
+
+#indice-calidad>p>span{
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+#nivel-riesgo>p>span{
+    font-weight: bold;
+    font-size: 1.2em;
+    
+}
+
+@media screen and (max-width: 700px) {
+    .sidebar {
+        width: 100vw;
+        height: auto;
+        position: relative;
+    }
+}
+
+path {
+    stroke-width: 1;
+    fill: none;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: grey;
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+}
+
+.tooltip {
+    position: absolute;
+    text-align: center;
+    width: 60px;
+    height: 35px;
+    padding: 10px;
+    margin-top: -20px;
+    font-size: .8em;
+    font-family: 'Roboto', sans-serif;
+    background: #fbf6f0;
+    pointer-events: none;
+}
+
+.legend {
+    list-style: none;
+}
+
+.legend li {
+    float: left;
+    margin-right: 10px;
+}
+
+.legend span {
+    border: 1px solid #ccc;
+    float: left;
+    width: 12px;
+    height: 12px;
+    margin: 2px;
+}
+
+.legend .Referral {
+    background-color: #FF7F0E;
+}
+
+.legend .Payment {
+    background-color: #1f77b4;
+}
+    
+table, th, td {
+    border-right: 1px solid black;
+    background-color: white;
+    width: 18vw;
+    height: 4.3vh;
+    text-align: center;
+}
+
+td {
+    line-height: 4.2vh;
+    font-size: .8em
+}
+
+table {
+    box-shadow: 0 1px 14px rgba(0,0,0,0.64), 0 4px 4px rgba(0,0,0,0.23);
+}
+
+table > tbody > tr > th {
+    border-bottom: 1px solid black;
+    line-height: 2vh;
+}
+
+table > tbody > tr > td:nth-child(2) {
+    text-align: left;
+    padding-left: 15px;
+}
+
+.area {
+    fill: url(#temperature-gradient);
+    stroke-width: 05px;
+}
+
+#table-promedios {
+	border: 1px solid black;
+}
+
+#table-date {
+	color: white;
+	font-style: italic;
+	margin-top: .5em;
+    margin-bottom: 1.5em;
+}
+
+.nomenclatura {
+	font-weight: bold;
+}
+
+
+
+table {
+    font-size: .8em !important;
+}
+
+
+
+
+
+
+
+
+
+
+#acotaciones {
+    width: max-content;
+    position: fixed;
+    z-index: 500;
+    right: 3vh;
+    top: 1vh;
+    background:
+    white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px
+    rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+#acotaciones > .item > * {
+    display: inline-block;
+
+}
+
+#acotaciones > .item > .color{
+    width: 20px;
+    height: 2px;
+    margin: 4px;
+}
+
+#acotaciones > .item:nth-child(1) > .color{
+    background-color: #ff7f0e;
+}
+
+#acotaciones > .item:nth-child(2) > .color{
+    background-color: #afcad5;
+}
+
+
+

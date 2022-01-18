@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <title>
+        Monitoreo de la Calidad del Aire | You-i Lab
+    </title>
+    <style type="text/css">
+    html,
+    body {
+        height: 100%;
+    }
+
+
+    body>.sidebar {
+        width: 23%;
+        background-color: #131444;
+        height: 100%;
+        display: inline-block;
+        position: fixed;
+    }
+
+    body>.contenedor {
+        height: 100%;
+        width: 77%;
+        display: inline-block;
+        float: right;
+    }
+
+    body>.contenedor>div {
+        padding: 30px 25px;
+    }
+
+    .sidebar>main {
+        padding: 20px 25px;
+    }
+
+    .sidebar>footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
+
+    .sidebar>footer>.instituciones {
+        width: max-content;
+        margin: auto;
+    }
+
+    .footer-logo {
+        width: auto;
+        height: 60px;
+        margin: 7px 15px;
+        bottom: 0;
+        filter: brightness(0) invert(1);
+        display: inline-block;
+        margin: 10px 12px;
+    }
+
+   .informacion-de-estacion {
+        color: white;
+        font-family: 'Robot', sans-serif;
+    }
+
+    #nombre-de-estacion {
+        margin-top: 40px;
+    }
+
+    #nombre-de-estacion>p>span {
+        font-weight: bold;
+        font-size: 1.4em;
+    }
+
+    #nombre-del-estado {
+        margin-top: 10px;
+    }
+
+    #indice-calidad {
+        margin-top: 40px;
+        margin-bottom: 0.5em;
+    }
+
+    #nivel-riesgo {
+        margin-bottom: 3em;
+    }
+
+    #indice-calidad>p>span{
+        font-weight: bold;
+        font-size: 1.2em;
+    }
+
+    #nivel-riesgo>p>span{
+        font-weight: bold;
+        font-size: 1.2em;
+        
+    }
+
+    @media screen and (max-width: 700px) {
+        .sidebar {
+            width: 100%;
+            height: auto;
+            position: relative;
+        }
+    }
+
+
+
+
+    path {
+        stroke-width: 1;
+        fill: none;
+    }
+
+
+    .axis path,
+    .axis line {
+        fill: none;
+        stroke: grey;
+        stroke-width: 1;
+        shape-rendering: crispEdges;
+    }
+
+
+    .tooltip {
+        position: absolute;
+        text-align: center;
+        width: 60px;
+        height: 12px;
+        padding: 8px;
+        margin-top: -20px;
+        font: 10px sans-serif;
+        background: #ddd;
+        pointer-events: none;
+    }
+
+
+
+    .legend {
+        list-style: none;
+    }
+
+    .legend li {
+        float: left;
+        margin-right: 10px;
+    }
+
+    .legend span {
+        border: 1px solid #ccc;
+        float: left;
+        width: 12px;
+        height: 12px;
+        margin: 2px;
+    }
+
+
+
+
+    .legend .Referral {
+        background-color: #FF7F0E;
+    }
+
+    .legend .Payment {
+        background-color: #1f77b4;
+    }
+
+
+
+
+    
+table, th, td {
+    border-right: 1px solid black;
+    background-color: white;
+    width: 280px;
+    text-align: center;
+}
+
+td {
+    line-height: 3em;
+}
+
+table {
+    margin-top: 60px;
+}
+
+table > tbody > tr > th {
+    border-bottom: 1px solid black;
+    line-height: 2em;
+}
+
+
+
+
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <header>
+            <div id="app-logo"></div>
+        </header>
+        <main>
+            <div class="informacion-de-estacion">
+                <section id="nombre-de-estacion">
+                    <p>Estación:<br>
+                        <span>Industriales Potosinos Asociados</span>
+                    </p>
+                </section>
+                <section id="nombre-del-estado">
+                    <p>Estado:
+                        <span>San Luis Potosí</span>
+                    </p>
+                </section>
+                <section id="indice-calidad">
+                    <p>Calidad del aire:
+                        <span>Muy mala</span>
+                    </p>
+                </section>
+                <section id="nivel-riesgo">
+                    <p>Nivel del riesgo:
+                        <span>Muy alto</span>
+                    </p>
+                </section>
+            </div>
+            <table>
+                <tr>
+                    <th class="black-font">Contaminante</th>
+                    <th class="black-font">Promedio de concentración</th>
+                </tr>
+                <tr>
+                    <td>PM10</td>
+                    <td id="prom1"></td>
+                </tr>
+                <tr>
+                    <td>PM2.5</td>
+                    <td id="prom2"></td>
+                </tr>
+                <tr>
+                    <td>SO2</td>
+                    <td id="prom3"></td>
+                </tr>
+                <tr>
+                    <td>CO</td>
+                    <td id="prom4"></td>
+                </tr>
+                <tr>
+                    <td>O3</td>
+                    <td id="prom5"></td>
+                </tr>
+            </table>
+            <p id="table-date">Fecha/Hora: </p>
+        </main>
+        <footer>
+            <div class="instituciones">
+                <img class="footer-logo" src="assets/img/icons/logos/ipicyt_logo.png">
+                <img class="footer-logo" src="assets/img/icons/logos/youilab_logo.png">
+            </div>
+        </footer>
+    </div>
+    <div class="contenedor">
+        <div id="grafica-pm10"></div>
+        <div id="grafica-pm25"></div>
+        <div id="grafica-o3"></div>
+        <div id="grafica-no2"></div>
+        <div id="grafica-so2"></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.0/d3.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+    function parse_query_string(query) {
+        var vars = query.split("&");
+        var query_string = {};
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split("=");
+            var key = decodeURIComponent(pair[0]);
+            var value = decodeURIComponent(pair[1]);
+            // If first entry with this name
+            if (typeof query_string[key] === "undefined") {
+                query_string[key] = decodeURIComponent(value);
+                // If second entry with this name
+            } else if (typeof query_string[key] === "string") {
+                var arr = [query_string[key], decodeURIComponent(value)];
+                query_string[key] = arr;
+                // If third or later entry with this name
+            } else {
+                query_string[key].push(decodeURIComponent(value));
+            }
+        }
+        return query_string;
+    }
+
+    procesarData();
+
+    var metricas = [{
+        calidad: "Buena",
+        riesgo: "Bajo"
+    }, {
+        calidad: "Aceptable",
+        riesgo: "Moderado"
+    }, {
+        calidad: "Mala",
+        riesgo: "Alto"
+    }, {
+        calidad: "Muy Mala",
+        riesgo: "Muy Alto"
+    }, {
+        calidad: "Extremadamente Mala",
+        riesgo: "Extremadamente Alto"
+    }, {
+        calidad: "No Disponible",
+        riesgo: "No Disponible"
+    }];
+
+    function procesarData() {
+        $.getJSON("assets/data/analysis.json", function(data) {
+
+            var query = window.location.search.substring(1);
+            var estacion = parse_query_string(query).id;
+
+            $.each(data, function(index, estacionTmp) {
+                if (estacionTmp.IDSTATION == estacion) {
+
+                    $("#nombre-de-estacion > p > span").text(estacionTmp.NAMESTATION);
+                    $("#nombre-del-estado > p > span").text(estacionTmp.STATE);
+                    $("#indice-calidad > p > span").text(metricas[estacionTmp.calidadDelAire - 1].calidad);
+                    $("#nivel-riesgo > p > span").text(metricas[estacionTmp.calidadDelAire - 1].riesgo);
+
+                    $(estacionTmp.promMovil12PM10 != -1 ? $("#prom1").text(estacionTmp.promMovil12PM10) : $("#prom1").text("Sin datos"));
+                    $(estacionTmp["promMovil12PM2.5"] != -1 ? $("#prom2").text(estacionTmp["promMovil12PM2.5"]) : $("#prom2").text("Sin datos"));
+                    $(estacionTmp.promMovil24SO2 != -1 ? $("#prom3").text(estacionTmp.promMovil24SO2) : $("#prom3").text("Sin datos"));
+                    $(estacionTmp.promMovil8CO != -1 ? $("#prom4").text(estacionTmp.promMovil8CO) : $("#prom4").text("Sin datos"));
+                    $(estacionTmp.promMovil8O3 != -1 ? $("#prom5").text(estacionTmp.promMovil8O3) : $("#prom5").text("Sin datos"));
+
+                    $("#table-date").text("DateTime: " + estacionTmp.now);
+
+                    graficarEstacion(estacionTmp, "grafica-pm10", "grafica-pm25", "grafica-o3", "grafica-no2", "grafica-so2");
+                }
+            });
+
+        });
+    }
+
+
+
+
+    function graficarEstacion(estacion, contenedorPM10, contenedorPM25, contenedorO3, contenedorNO2, contenedorSO2) {
+
+
+        if (estacion["PM10ch"].length > 0) {
+            concentraciones = estacion["PM10ch"];
+            promedioMovilHr = estacion["promMovil12PM10T"];
+            graficarContaminante("PM10", "ug/m3", concentraciones, promedioMovilHr, contenedorPM10, estacion.startDate);
+        } else
+            $("#" + contenedorPM10).css("display", "none");
+
+        if (estacion["PM2.5ch"].length > 0) {
+            concentraciones = estacion["PM2.5ch"];
+            promedioMovilHr = estacion["promMovil12PM2.5T"];
+            graficarContaminante("PM2.5", "ug/m3", concentraciones, promedioMovilHr, contenedorPM25, estacion.startDate);
+        } else
+            $("#" + contenedorPM25).css("display", "none");
+
+        if (estacion["O3ch"].length > 0) {
+            concentraciones = estacion["O3ch"];
+            promedioMovilHr = estacion["promMovil8O3T"];
+            graficarContaminante("O3", "ppm", concentraciones, promedioMovilHr, contenedorO3, estacion.startDate);
+        } else
+            $("#" + contenedorO3).css("display", "none");
+
+        if (estacion["SO2ch"].length > 0) {
+            concentraciones = estacion["SO2ch"];
+            promedioMovilHr = estacion["promMovil24SO2T"];
+            graficarContaminante("SO2", "ppm", concentraciones, promedioMovilHr, contenedorSO2, estacion.startDate);
+        } else
+            $("#" + contenedorSO2).css("display", "none");
+
+        if (estacion["NO2ch"].length > 0) {
+            concentraciones = estacion["NO2ch"];
+            graficarContaminante("NO2", "ppm", concentraciones, null, contenedorNO2, estacion.startDate);
+        } else
+            $("#" + contenedorNO2).css("display", "none");
+
+    }
+
+    function procesarDia(fecha) {
+        var mes = (fecha.getMonth() + 1).toString();
+        if(mes.length == 1) mes = "0" + mes;
+        var dia = (fecha.getUTCDate()).toString();
+        if(dia.length == 1) dia = "0" + dia;
+
+        var date = mes + "/" + dia + "/" + fecha.getFullYear() ;
+
+        return date;
+    }
+
+
+    function addDays(date, days) {
+        //console.log("agregando 1 día a => ", date);
+        date.setDate(date.getDate() + days);
+        return date;
+    }
+
+    function graficarContaminante(contaminante, unidad, concentraciones, promedioMovilPorHora, contenedor, fechaInicial) {
+
+        
+        var parseDate = d3.time.format("%m/%e/%Y").parse;
+
+        var horas = range(0, concentraciones.length);
+
+        var fechaDeInicio = new Date(fechaInicial);
+        var tmpHoras = 0;
+
+        var data = new Array();
+        for (var i = 0; i < concentraciones.length; i++) {
+            var tmpData = {};
+            tmpData.concentracion = parseFloat(concentraciones[i]);
+            tmpData.hora = i;
+            //tmpData.hora = tmpHoras;
+            tmpData.fecha = parseDate(procesarDia(fechaDeInicio));
+            if (promedioMovilPorHora != null)
+                tmpData.promedio = promedioMovilPorHora[i];
+            data.push(tmpData);
+
+            tmpHoras++;
+            if (tmpHoras == 24) {
+                addDays(fechaDeInicio, 1);
+                tmpHoras = 0;
+            }
+        }
+
+        console.log(data);
+
+        var width = $("body > .contenedor").width();
+
+        // Set the dimensions of the canvas / graph
+        var margin = { top: 40, right: 20, bottom: 30, left: 90 },
+            width = width - margin.left - margin.right - 80,
+            height = 300 - margin.top - margin.bottom;
+
+        
+        // Set the ranges
+        //var x = d3.time.scale().range([0, width]);
+        var x = d3.scale.linear().range([0, width]);
+        var y = d3.scale.linear().range([height, 10]);
+
+        // Define the axes
+        var xAxis = d3.svg.axis().scale(x)
+            .orient("bottom").ticks(2);
+
+        /*
+        .ticks(d3.time.months)
+        .tickSize(16, 0)
+        .tickFormat(d3.time.format("%b%y"));
+        */
+
+        var yAxis = d3.svg.axis().scale(y)
+            .orient("left").ticks(5);
+
+        // Define the line
+        var valueline = d3.svg.line()
+            //.interpolate("basis")
+            .x(function(d) { return x(d.hora); })
+            .y(function(d) { return y(d.concentracion); });
+
+
+        if (promedioMovilPorHora != null)
+            var valueline2 = d3.svg.line()
+                //.interpolate("basis")
+                .x(function(d) { return x(d.hora); })
+                .y(function(d) { return y(d.promedio); });
+
+
+
+        // Adds the svg canvas
+        var svg = d3.select("#" + contenedor)
+            .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform",
+                "translate(" + margin.left + "," + margin.top + ")");
+
+
+
+
+
+        x.domain(d3.extent(data, function(d) { return d.hora; }));
+
+        if (promedioMovilPorHora != null)
+            y.domain([0, d3.max(data, function(d) { return Math.max(d.concentracion, d.promedio); })]);
+        else
+            y.domain([0, d3.max(data, function(d) { return d.concentracion; })]);
+
+
+
+        if (promedioMovilPorHora != null)
+            svg.append("path") //Referral Orange
+            .attr("class", "line")
+            .attr('stroke', '#038cfc')
+            //.on("mouseover", mouseover)
+            //.on("mousemove", mousemove)
+            //.on("mouseout", mouseout)       
+            .attr("d", valueline2(data));
+
+        svg.append("path") //Referral Orange
+            .attr("class", "line")
+            .attr('stroke', '#FF7F0E')
+            //.on("mouseover", mouseover)
+            //.on("mousemove", mousemove)
+            //.on("mouseout", mouseout)       
+            .attr("d", valueline(data));
+
+
+        svg.selectAll("dot")
+            .data(data)
+            .enter().append("circle")
+            .attr("r", 2.5)
+            .attr("cx", function(d) { return x(d.hora); })
+            .attr("cy", function(d) { return y(d.concentracion); })
+            //.attr("hora", function(d) { return d.hora; })
+            .style("fill", '#FF7F0E')
+            .on("mouseover", mouseover)
+            //.on("mousemove", mousemove)
+            .on("mouseout", mouseout);
+
+
+
+        // Add the X Axis
+        svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis);
+
+
+
+        // Add the Y Axis
+        svg.append("g")
+            .attr("class", "y axis")
+            .call(yAxis);
+
+        svg.append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 0 - margin.left)
+            .attr("x", 0 - (height / 2))
+            .attr("dy", "1em")
+            .style("text-anchor", "middle")
+            .text("Concentración (" + unidad + ")");
+
+
+        svg.append("text")
+            .attr("x", (width / 2))
+            .attr("y", 0 - (margin.top / 2))
+            .attr("text-anchor", "middle")
+            .style("font-size", "16px")
+            .style("text-decoration", "underline")
+            .text(contaminante);
+
+
+
+        var div = d3.select("body").append("div")
+            .attr("class", "tooltip")
+            .style("display", "none");
+
+        function mouseover() {
+            div.style("display", "inline");
+            //div.text(function(d, i) { return Math.round(((max / 200) * (247 - d3.event.pageY))) })
+            div.text(function(d, i) { console.log("i => ", i, d); return max })
+                .style("left", (d3.event.pageX - 34) + "px")
+                .style("top", (d3.event.pageY - 12) + "px");
+        }
+
+        var max = d3.max(data, function(d) { return d.hora; });
+
+        function mousemove() {
+            //Math.round(((max/210)*(210-d3.event.pageY)))
+            div.text(function(d, i) { return max })
+                .style("left", (d3.event.pageX - 34) + "px")
+                .style("top", (d3.event.pageY - 12) + "px");
+        }
+
+
+        function mouseout() {
+            div.style("display", "none");
+            div.text("");
+        }
+
+    }
+
+
+
+
+
+
+
+
+    function range(start, end) {
+        var ans = [];
+        for (let i = start; i <= end; i++) {
+            ans.push(i);
+        }
+        return ans;
+    }
+    </script>
+</body>
+
+</html>

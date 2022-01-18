@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Monitoreo de la Calidad del Aire | You-i Lab</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/leaflet.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet"> 
+    <link rel="icon" href="assets/img/icons/logos/favicon.ico">
+</head>
+<body>
+    <div id="top-logos">
+        <img src="assets/img/icons/logos/logo_aire.png">
+        <a href="https://www.insp.mx/infografias/contaminacion-aire-salud.html"  target="_blank">Más información</a>
+    </div>
+    </div>
+    <div id="map-container"></div>
+    <div id="side-bar" class="hidden">
+    <header>
+        <button onclick="hideSideBar()"><i class="fa fa-times"></i></button>
+        <div id="color-band"></div>
+    </header>
+    <main>
+        <section class="nombre-de-red">
+            <p>Red: <span></span></p>
+        </section>
+        <section class="indice-calidad">
+            <p>El índice de calidad es: <span></span></p>
+        </section>
+        <section class="nivel-riesgo">
+            <p>El nivel de riesgo es: <span></span></p>
+        </section><hr>
+            <div class="contenedor"></div>
+    </main>
+<footer>
+    <div class="instituciones">
+        <img class="footer-logo" src="assets/img/icons/logos/ipicyt_logo.png"/>
+        <img class="footer-logo" src="assets/img/icons/logos/youilab_logo.png"/>
+    </div>
+</footer>
+        <div class="popup-component" id="unknown-q">
+            <header>
+                <div class="popup-color-band"></div>
+                <b class="black-font">La estacion NO REPORTA DATOS</b>
+                <br>Calidad del aire: No disponible
+                <br>Riesgo a la salud: No disponible
+            </header>
+        </div>
+        <div class="popup-component" id="good-q">
+            <header>
+                <img class="common-pp" src="assets/img/info/info_green.png"/>
+            </header>
+        </div>
+        <div class="popup-component" id="regular-q">
+            <header>
+                <img class="common-pp" src="assets/img/info/info_yellow.png">
+            </header>
+        </div>
+        <div class="popup-component" id="bad-q">
+            <header>
+                <img class="common-pp" src="assets/img/info/info_orange.png">
+            </header>
+        </div>
+        <div class="popup-component" id="vbad-q">
+            <header>
+                <img class="common-pp" src="assets/img/info/info_red.png">
+            </header>
+        </div>
+        <div class="popup-component" id="extreme-q">
+            <header>
+                <img class="common-pp" src="assets/img/info/info_purple.png">
+            </header>
+        </div>
+    </div>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"> </script>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+    let mymap = L.map('map-container').setView([22.2515678, -101.1115929], 6);
+    </script>
+
+    <script type="text/javascript" src="assets/js/map-related.js"></script>
+</body>
+</html>
